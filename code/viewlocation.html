@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Weather</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" sizes="196x196" href="images/icon.png" />
+        <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+        border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+          <header class="mdl-layout__header">
+              <button onclick="location.href = 'index.html';" class="mdl-layout-icon mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">arrow_back</i>
+              </button>
+            <div class="mdl-layout__header-row">
+              <span class="mdl-layout-title" id="headerBarTitle">View Location</span>
+            </div>
+          </header>
+
+          <main class="mdl-layout__content">
+            <div class="content-grid mdl-grid">
+              <div class="mdl-cell">
+                <!--   Main page content here:   -->
+                  <div id="map" style="width:350px;height:400px;background:blue"></div>
+                  <input type="button" onclick="deleteLocation(locationIndex)" value="Remove location">
+                  <h3>Date is: </h3>
+                  <div id="currentDate"></div>
+                  <h3>Input Date: </h3>
+                  <input type="date" id="dateInput" min="2017-09-01"/>
+                  <div id='dateInput'><input type="button" onclick="getWea(dateEntered)" value="Get weather Info"></div>
+                  <div>
+                      <br></br>
+                      <table style="width:80%">
+                          <tr>
+                            <th>Summary</th>
+                            <th>Temperature(F)</th>
+                            <th>Lowest Temp(F)</th> 
+                            <th>Highest Temp(F)</th>
+                            <th>Visibility</th>
+                          </tr>
+                          <tr>
+                            <td><p id="sum"></p></td>
+                            <td><p id="temp"></p></td>
+                            <td><p id="lowTemp"></p></td>
+                            <td><p id="highTemp"></p></td>
+                            <td><p id="vis"></p></td>  
+                          </tr>
+                        </table>
+                  </div>
+                  <br></br>
+                  <div id='table'></div>
+                  </div>
+                <script>
+                function myMap(lat,long) {
+                //This function creates map object and centers it with marker
+                    var mapOptions = {
+                        center: new google.maps.LatLng(lat, long),
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.HYBRID
+                    }
+                    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                    var marker = new google.maps.Marker({
+                        position: mapOptions.center,
+                        map: map,
+                    });
+                }
+                </script>
+                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNHDk5iHCT2n_Ew1-wq4nbufetG5kV4zk&callback=myMap"></script>
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <!--   JavaScript files:   -->
+        <script src="js/dateExtensions.js"></script>
+        <script src="js/shared.js"></script>
+        <script src="js/viewLocationPage.js"></script>
+    </body>
+</html>

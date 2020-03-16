@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Weather</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" sizes="196x196" href="images/icon.png" />
+        <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
+    </head>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+          <header class="mdl-layout__header">
+              <button onclick="location.href = 'index.html';" class="mdl-layout-icon mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">arrow_back</i>
+              </button>
+            <div class="mdl-layout__header-row">
+              <span class="mdl-layout-title" id="headerBarTitle">Add Location</span>
+            </div>
+          </header>
+          <main class="mdl-layout__content">
+            <div class="content-grid mdl-grid">
+              <div class="mdl-cell">
+                <!--   Main page content here:   -->
+                <div id="map" style="width:350px;height:400px;background:blue"></div>
+                <script>
+                    function myMap(lat,long) {
+                    //This function creates map object and centers it with marker
+                        var mapOptions = {
+                            center: new google.maps.LatLng(lat, long),
+                            zoom: 15,
+                            mapTypeId: google.maps.MapTypeId.HYBRID
+                        }
+                        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: mapOptions.center,
+                            map: map,
+                        });
+                    }
+                </script>
+                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNHDk5iHCT2n_Ew1-wq4nbufetG5kV4zk&callback=myMap"></script>
+                  <form id="frm1" action="/action_page.php">
+                       Suburb: <input type="text" name="name" id="sub" value="" /><br>
+                       City: <input type="text" name="name" id="cit" value="" /><br>
+                       Country: <input type="text" name="name" id="coun" value="" /><br>
+                       Nickname: <input type="text" name="name" id="nick" value="" /><br>
+                       <input type="button" onclick="locClick()" value="View">
+                  </form>
+                  <br></br>
+                  <input type="button" onclick="addClick()" value="Add">
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <!--   JavaScript files:   -->
+        <script src="js/dateExtensions.js"></script>
+        <script src="js/shared.js"></script>
+        <script src="js/addLocationPage.js"></script>
+    </body>
+</html>
